@@ -29,6 +29,7 @@ apt-get install default-jre -y && \
 apt-get install default-jdk -y && \
 apt-get install openjdk-8-jdk openjdk-8-jre -y
 
-RUN ./configure --prefix=/usr/local/bin/R/${R_VERSION} --enable-R-shlib --with-bl --with-readline=no --with-x=no && \
-make && \
+RUN ./configure --prefix=/usr/local/bin/R/${R_VERSION} --enable-R-shlib --with-blas --with-lapack --with-readline=no --with-x=no
+
+RUN make && \
 make install
