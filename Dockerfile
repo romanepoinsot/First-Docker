@@ -8,7 +8,8 @@ apt-get install -y software-properties-common apt-utils curl wget
 RUN apt-get install gdebi-core -y
 
 RUN cp /etc/apt/sources.list /etc/apt/sources.list~ && \
-sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list 
+sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list && \
+apt-get update
 
 RUN apt-get build-dep r-base 
 
