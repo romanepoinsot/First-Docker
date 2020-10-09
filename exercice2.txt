@@ -1,0 +1,45 @@
+1.Démarrer interactivement un containeur
+
+docker pull ubuntu:18.04
+docker run -it ubuntu:18.04
+
+1. Installer les pré-requis 
+
+apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends t
+apt-get install -y software-properties-common apt-utils curl wget
+
+apt-get install gdebi-core -y
+
+2. Ensuite, installez les dépendances pour R : 
+
+apt-get build-dep r-base
+
+3. Spécifier et installer la version de R:
+export R_VERSION=3.6.3
+curl -O https://cran.rstudio.com/src/base/R-3/R-${R_VERSION}.tar.gz
+tar -xzvf R-${R_VERSION}.tar.gz
+cd R-${R_VERSION}
+
+4. Installer paquets manquants: https://github.com/Jiefei-Wang/Painless-R-compilation-and-installation-on-Ubuntu)
+
+apt-get install build-essential fort77 xorg-dev liblzma-dev libblas-dev gfortran -y
+apt-get install gcc-multilib gobjc++ aptitude -y
+apt-get install libreadline-dev -y
+apt-get install libbz2-dev -y
+apt-get install libpcre3-dev -y
+apt-get install libcurl4 libcurl4-openssl-dev -y
+apt-get install default-jre -y
+apt-get install default-jdk -y
+apt-get install openjdk-8-jdk openjdk-8-jre -y
+ 
+5. Terminer par :
+
+./configure --prefix=/usr/local/bin/R/${R_VERSION} --enable-R-shlib --with-bl --with-readline=no --with-x=no
+make
+make install
+
+6.Vérification
+/opt/R/R-${R_VERSION}/bin/R --version
+
+ 
