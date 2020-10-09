@@ -38,7 +38,7 @@ apt-get install openjdk-8-jdk openjdk-8-jre -y
  
 5. Terminer par :
 
-./configure --prefix=/usr/local/bin/R/${R_VERSION} --enable-R-shlib --with-bl --with-readline=no --with-x=no
+./configure --prefix=/usr/local/bin/R/${R_VERSION} --enable-R-shlib --with-blas --with-lapack --with-readline=no --with-x=no
 make
 make install
 
