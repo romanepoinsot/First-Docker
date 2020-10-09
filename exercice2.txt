@@ -6,14 +6,17 @@ docker run -it ubuntu:18.04
 1. Installer les pré-requis 
 
 apt-get update
-DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends t
+DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
 apt-get install -y software-properties-common apt-utils curl wget
 
 apt-get install gdebi-core -y
 
-2. Ensuite, installez les dépendances pour R : 
+2. Ensuite, installez les dépendances pour R :
 
-apt-get build-dep r-base
+cp /etc/apt/sources.list /etc/apt/sources.list~ && \
+sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list  
+
+apt-get build-dep r-base -y
 
 3. Spécifier et installer la version de R:
 export R_VERSION=3.6.3
